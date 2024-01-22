@@ -12,7 +12,14 @@ class ActivityList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: activity.length,
-      itemBuilder: (ctx, index) => ActivityItem(activity[index]),
+      
+      itemBuilder: (ctx, index) => Dismissible(
+        key: ValueKey(activity[index]),
+        onDismissed: (direction) {
+          //delete activity
+        },
+        child: ActivityItem(activity[index]),
+      ),
     );
   }
 }

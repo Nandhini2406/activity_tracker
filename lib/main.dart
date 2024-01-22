@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:activity_tracker/activities.dart';
+import 'package:provider/provider.dart';
+import 'package:activity_tracker/providers/activity_provider.dart';
+
 void main() {
-  runApp(const Activities());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ActivityProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(useMaterial3: true),
+        home: const Activities(),
+      ),
+    ),
+  );
 }
 
 

@@ -9,10 +9,10 @@ final timeFormatter = DateFormat.Hms();
 enum Category { learning, reading, excersing, working }
 
 const categoryIcon = {
-  Category.learning: Icons.edit_attributes,
-  Category.reading: Icons.book,
-  Category.excersing: Icons.sports_bar,
-  Category.working: Icons.work_history,
+  Category.learning: Icons.screen_search_desktop_outlined,
+  Category.reading: Icons.menu_book_sharp,
+  Category.excersing: Icons.self_improvement_sharp,
+  Category.working: Icons.laptop_mac_rounded,
 };
 
 class Activity {
@@ -25,10 +25,10 @@ class Activity {
 
   final String id;
   final String title;
-  final DateTime time;
+  final Duration time;
   final DateTime date;
   final Category category;
 
   String get formattedDate => dateFormatter.format(date);
-  String get formattedTime => timeFormatter.format(time);
+  // String get formattedTime => timeFormatter.format(time);
 }
