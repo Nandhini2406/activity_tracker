@@ -19,23 +19,37 @@ class ActivityItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(activity.title),
-            Row(
-              children: [
-                Icon(categoryIcon[activity.category], size: 20),
-                Text(
-                  activity.category.name,
-                  style: const TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '${activity.time.inHours}Hour ${activity.time.inMinutes}Minutes',
+                  activity.title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  '${activity.time.inHours}h ${activity.time.inMinutes.remainder(60)}m',
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Row(
+                  children: [
+                    Icon(categoryIcon[activity.category], size: 25),
+                    const SizedBox(width: 6),
+                    Text(
+                      activity.category.name.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
                 const Spacer(),
                 Text(

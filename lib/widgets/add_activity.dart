@@ -86,11 +86,11 @@ class _AddActivityState extends State<AddActivity> {
     final activityProvider =
         Provider.of<ActivityProvider>(context, listen: false);
 
-    final totalTime = _timeSpent.inHours >= 0;
+    final totalTime = _timeSpent.inHours < 0;
 
-    if (_enteredActivity.text.trim().isEmpty
-        //  || _selectedDate == null || totalTime
-        ) {
+    if (_enteredActivity.text.trim().isEmpty ||
+        totalTime ||
+        _selectedDate == null) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -109,10 +109,11 @@ class _AddActivityState extends State<AddActivity> {
       return;
     }
     print(_enteredActivity.text);
-    print(_timeSpent);
+    print(_timeSpent.inMinutes.toDouble());
     print(dateFormatter.format(_selectedDate!));
     print(_selectedCategory.name);
     final newActivity = Activity(
+      1,
       title: _enteredActivity.text,
       time: _timeSpent,
       date: _selectedDate!,
@@ -274,7 +275,7 @@ class _AddActivityState extends State<AddActivity> {
                 },
               ),
               const Spacer(),
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },

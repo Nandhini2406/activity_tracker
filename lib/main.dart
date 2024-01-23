@@ -1,22 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/activities.dart';
 import 'package:provider/provider.dart';
+import 'package:activity_tracker/activities.dart';
 import 'package:activity_tracker/providers/activity_provider.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => ActivityProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(useMaterial3: true),
-        home: const Activities(),
-      ),
+      child: const MyApp(),
     ),
   );
 }
 
+var kColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 0, 77, 200),
+);
+var kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 41, 23, 122),
+);
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.primaryContainer,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 10,
+          ),
+        ),
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kDarkColorScheme.primaryContainer,
+          foregroundColor: kDarkColorScheme.onSecondaryContainer,
+          titleTextStyle: const TextStyle().copyWith(
+            color: kDarkColorScheme.onSecondaryContainer,
+            fontWeight: FontWeight.w500,
+            fontSize: 20,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
+      ),
+      theme: ThemeData().copyWith(
+        colorScheme: kColorScheme,
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.onPrimaryContainer,
+          foregroundColor: kColorScheme.secondaryContainer,
+        ),
+        cardTheme: const CardTheme().copyWith(
+          color: kColorScheme.primaryContainer,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 10,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kColorScheme.primaryContainer,
+          ),
+        ),
+      ),
+      themeMode: ThemeMode.system,
+      home: const Activities(),
+    );
+  }
+}
 
 
 // class MyApp extends StatelessWidget {
