@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:activity_tracker/widgets/chart/chart_bar.dart';
 import 'package:activity_tracker/model/activity.dart';
+import 'package:activity_tracker/widgets/chart/chart_bar.dart';
 
 class Chart extends StatelessWidget {
   const Chart({super.key, required this.activities});
@@ -17,7 +16,7 @@ class Chart extends StatelessWidget {
     ];
   }
 
-  double get maxTotalTime {
+  double get maxTotalTime { //Total time spent in all activity
     double maxTotalTime = 0;
 
     for (final bucket in buckets) {
@@ -30,7 +29,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
+    final isDarkMode =  // revisit this section for this
         MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     return Container(
@@ -40,7 +39,7 @@ class Chart extends StatelessWidget {
         horizontal: 8,
       ),
       width: double.infinity,
-      height: 180,
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
@@ -67,7 +66,7 @@ class Chart extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
           Row(
             children: buckets // for ... in
                 .map(

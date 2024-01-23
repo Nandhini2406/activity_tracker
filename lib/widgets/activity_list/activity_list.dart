@@ -10,8 +10,10 @@ class ActivityList extends StatelessWidget {
     required this.activity,
     required this.onDelete,
   });
+
   final List<Activity> activity;
-   final void Function() onDelete;
+  final void Function() onDelete;
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

@@ -24,7 +24,7 @@ class ActivityProvider extends ChangeNotifier {
     _saveActivities();
   }
 
-// Load activities from SharedPreferences
+// Load activities from SharedPreferences // Get explanation from GPT
   Future<void> _loadActivities() async {
     final prefs = await SharedPreferences.getInstance();
     final List<String>? activityStrings =

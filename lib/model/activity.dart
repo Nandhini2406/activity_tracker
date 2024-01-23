@@ -38,8 +38,8 @@ class Activity {
     return {
       'id': id,
       'title': title,
-      'time': time.inMilliseconds, 
-      'date': date.toIso8601String(), 
+      'time': time.inMilliseconds,
+      'date': date.toIso8601String(),
       'category': category.toString(),
     };
   }
@@ -49,10 +49,8 @@ class Activity {
     return Activity(
       json['id'] ?? uuid.v4(),
       title: json['title'] ?? '',
-      time: Duration(
-          milliseconds: json['time'] ?? 0), 
-      date: DateTime.parse(
-          json['date'] ?? ''), 
+      time: Duration(milliseconds: json['time'] ?? 0),
+      date: DateTime.parse(json['date'] ?? ''),
       category: Category.values.firstWhere(
         (e) => e.toString() == json['category'],
         orElse: () => Category.learning,
@@ -74,7 +72,8 @@ class ActivityBucket {
 
   final Category category;
   final List<Activity> activities;
-
+// Total time spent in each category activity
+//i.e, Total time spend in learning activity
   double get totalTimeSpent {
     double time = 0;
     for (final act in activities) {

@@ -14,8 +14,6 @@ class Activities extends StatefulWidget {
 }
 
 class _ActivitiesState extends State<Activities> {
-  // final List<Activity> _dailyActivities = [];
-  
   void addActivityModal() {
     showModalBottomSheet(
       // isScrollControlled: true, // shows full screen modal
@@ -31,7 +29,7 @@ class _ActivitiesState extends State<Activities> {
         Provider.of<ActivityProvider>(context, listen: false);
     setState(() {
       // Get the deleted activity
-      final deletedActivity = providerActivity.dailyActivities.first;
+      final deletedActivity = providerActivity.dailyActivities.last;
       lastDeletedActivity = deletedActivity;
     });
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -41,12 +39,10 @@ class _ActivitiesState extends State<Activities> {
       ),
       duration: const Duration(seconds: 5),
       action: SnackBarAction(
-        label: 'Undo',
+        label: 'Undo',    //undo delete action
         onPressed: () {
-          //undo delete action
           if (lastDeletedActivity != null) {
             // Add the activity back to the list
-
             providerActivity.addActivity(lastDeletedActivity!);
           }
         },
@@ -56,6 +52,7 @@ class _ActivitiesState extends State<Activities> {
 
   @override
   Widget build(BuildContext context) {
+    
     final providerActivity = Provider.of<ActivityProvider>(context);
 
     Widget mainContent = const Center(

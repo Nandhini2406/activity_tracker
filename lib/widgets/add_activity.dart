@@ -82,6 +82,24 @@ class _AddActivityState extends State<AddActivity> {
     });
   }
 
+  void showInvalidAlert() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Invalid input'),
+        content: const Text('Enter the valid data in the input field'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+            },
+            child: const Text('Okay'),
+          )
+        ],
+      ),
+    );
+  }
+
   void onAddActivity() {
     final activityProvider =
         Provider.of<ActivityProvider>(context, listen: false);
@@ -91,23 +109,10 @@ class _AddActivityState extends State<AddActivity> {
     if (_enteredActivity.text.trim().isEmpty ||
         totalTime ||
         _selectedDate == null) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Invalid input'),
-          content: const Text('Enter the valid data in the input field'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-              },
-              child: const Text('Okay'),
-            )
-          ],
-        ),
-      );
+      showInvalidAlert;
       return;
     }
+    
     print(_enteredActivity.text);
     print(_timeSpent.inMinutes.toDouble());
     print(dateFormatter.format(_selectedDate!));

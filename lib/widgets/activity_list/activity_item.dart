@@ -1,16 +1,18 @@
-import 'package:activity_tracker/model/activity.dart';
 import 'package:flutter/material.dart';
+import 'package:activity_tracker/model/activity.dart';
 
 class ActivityItem extends StatelessWidget {
   const ActivityItem(
     this.activity, {
     super.key,
   });
+
   final Activity activity;
+
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 3,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 16,
@@ -52,9 +54,7 @@ class ActivityItem extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                Text(
-                  activity.formattedDate,
-                ),
+                Text(activity.formattedDate),
               ],
             )
           ],
