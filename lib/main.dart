@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:activity_tracker/activities.dart';
-import 'package:activity_tracker/providers/activity_provider.dart';
+import '../activities.dart';
+import '../providers/activity_provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => ActivityProvider(),
-      child: const MyApp(),
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]).then((fn) {
+    runApp(
+      ChangeNotifierProvider(
+        create: (context) => ActivityProvider(),
+        child: const MyApp(),
+      ),
+    );
+  // });
 }
 
 var kColorScheme = ColorScheme.fromSeed(
@@ -68,7 +74,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: kColorScheme.primaryContainer,
           ),
         ),
-         // textTheme:  TextTheme().copyWith(
+        // textTheme:  TextTheme().copyWith(
         // set theme to text
         // ),
       ),

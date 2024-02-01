@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:activity_tracker/model/activity.dart';
-import 'package:activity_tracker/providers/activity_provider.dart';
-import 'package:activity_tracker/widgets/activity_list/activity_list.dart';
-import 'package:activity_tracker/widgets/add_activity.dart';
-import 'package:activity_tracker/widgets/chart/chart.dart';
+import '../model/activity.dart';
+import '../providers/activity_provider.dart';
+import '../widgets/activity_list/activity_list.dart';
+import '../widgets/add_activity.dart';
+import '../widgets/chart/chart.dart';
 
 class Activities extends StatefulWidget {
   const Activities({super.key});
@@ -16,7 +16,8 @@ class Activities extends StatefulWidget {
 class _ActivitiesState extends State<Activities> {
   void addActivityModal() {
     showModalBottomSheet(
-      // isScrollControlled: true, // shows full screen modal
+      useSafeArea: true,
+      isScrollControlled: true, // shows full screen modal
       context: context,
       builder: (ctx) => const AddActivity(),
     );
@@ -39,7 +40,7 @@ class _ActivitiesState extends State<Activities> {
       ),
       duration: const Duration(seconds: 5),
       action: SnackBarAction(
-        label: 'Undo',    //undo delete action
+        label: 'Undo', //undo delete action
         onPressed: () {
           if (lastDeletedActivity != null) {
             // Add the activity back to the list
@@ -52,7 +53,8 @@ class _ActivitiesState extends State<Activities> {
 
   @override
   Widget build(BuildContext context) {
-    
+    final width = MediaQuery.of(context).size.width;
+    // final height = MediaQuery.of(context).size.height;
     final providerActivity = Provider.of<ActivityProvider>(context);
 
     Widget mainContent = const Center(
@@ -84,14 +86,25 @@ class _ActivitiesState extends State<Activities> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(activities: providerActivity.dailyActivities),
-          Expanded(
-            child: mainContent,
-          )
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(activities: providerActivity.dailyActivities),
+                Expanded(
+                  child: mainContent,
+                )
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: Chart(activities: providerActivity.dailyActivities),
+                ),
+                Expanded(
+                  child: mainContent,
+                )
+              ],
+            ),
     );
   }
 }

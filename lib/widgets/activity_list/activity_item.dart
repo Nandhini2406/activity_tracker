@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/model/activity.dart';
+import '../../model/activity.dart';
 
 class ActivityItem extends StatelessWidget {
   const ActivityItem(

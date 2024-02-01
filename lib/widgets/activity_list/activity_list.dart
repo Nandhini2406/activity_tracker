@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:activity_tracker/model/activity.dart';
-import 'package:activity_tracker/providers/activity_provider.dart';
-import 'package:activity_tracker/widgets/activity_list/activity_item.dart';
+import '../../model/activity.dart';
+import '../../providers/activity_provider.dart';
+import '../../widgets/activity_list/activity_item.dart';
 
 class ActivityList extends StatelessWidget {
   const ActivityList({

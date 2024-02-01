@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/model/activity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../model/activity.dart';
 
 class ActivityProvider extends ChangeNotifier {
   List<Activity> _dailyActivities = [];
